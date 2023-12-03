@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -38,12 +39,12 @@ public class DeliveryTest {
         $("[data-test-id='phone'] input").setValue(DataGenerator.generatePhone("+7"));
         $(".checkbox__box").click();
         $(".button").click();
-        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на "+ firstMeetingDate)).shouldBe(Condition.visible);
+        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate)).shouldBe(Condition.visible);
         $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
         $(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(5)));
         $(".button__text").click();
-        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на "+ secondMeetingDate)).shouldBe(Condition.visible);
+        $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(Condition.visible);
         // TODO: добавить логику теста в рамках которого будет выполнено планирование и перепланирование встречи.
         // Для заполнения полей формы можно использовать пользователя validUser и строки с датами в переменных
         // firstMeetingDate и secondMeetingDate. Можно также вызывать методы generateCity(locale),
