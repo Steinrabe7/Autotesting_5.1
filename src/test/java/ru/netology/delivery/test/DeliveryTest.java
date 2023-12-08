@@ -47,5 +47,4 @@ public class DeliveryTest {
         $(".notification__content").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(Condition.visible);
 
     }
-
 }
