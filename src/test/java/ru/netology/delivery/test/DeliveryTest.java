@@ -20,7 +20,7 @@ class DeliveryTest {
     private static final String TEST_TARGET_URL = "http://0.0.0.0:9999";
     private static final String LOCAL = "ru";
     private static final String MEETING_IS_SCHEDULED = "Встреча успешно запланирована на ";
-    private static final long CLICK_TIMEOUT = 3000;
+    private static final long CLICK_TIMEOUT = 5;
     private static final int FIRST_MEETING_DAYS_VALUE = 4;
     private static final int SECOND_MEETING_DAYS_VALUE = 7;
 
