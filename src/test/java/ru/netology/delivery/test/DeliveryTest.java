@@ -44,14 +44,11 @@ class DeliveryTest {
         $(".button").click();
         $(".notification__content")
                 .shouldHave(Condition.text(MEETING_IS_SCHEDULED + firstMeetingDate)).shouldBe(Condition.visible);
-        $(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(CLICK_TIMEOUT)));
-
         $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
-        //$(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(CLICK_TIMEOUT)));
+        $(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(CLICK_TIMEOUT)));
         $(".button__text").click();
         $(".notification__content")
                 .shouldHave(Condition.text(MEETING_IS_SCHEDULED + secondMeetingDate)).shouldBe(Condition.visible);
     }
-
 }
