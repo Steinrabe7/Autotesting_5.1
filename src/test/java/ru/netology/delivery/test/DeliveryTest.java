@@ -16,8 +16,8 @@ import java.time.Duration;
 
 class DeliveryTest {
 
-    //private static final String TEST_TARGET_URL = "http://localhost:9999";
-    private static final String TEST_TARGET_URL = "http://0.0.0.0:9999";
+    private static final String TEST_TARGET_URL = "http://localhost:9999";
+//    private static final String TEST_TARGET_URL = "http://0.0.0.0:9999";
     private static final String LOCAL = "ru";
     private static final String MEETING_IS_SCHEDULED = "Встреча успешно запланирована на ";
     private static final long CLICK_TIMEOUT = 5;
@@ -32,14 +32,17 @@ class DeliveryTest {
     @Test
     @DisplayName("Should successful plan and re-plan meeting")
     void shouldSuccessfulPlanAndRePlanMeeting() throws InterruptedException {
-        var validUser = DataGenerator.Registration.generateUser(LOCAL); //FIXME: Для чего эта переменная???
+        var validUser = DataGenerator.Registration.generateUser(LOCAL);
         var firstMeetingDate = DataGenerator.generateDate(FIRST_MEETING_DAYS_VALUE);
         var secondMeetingDate = DataGenerator.generateDate(SECOND_MEETING_DAYS_VALUE);
-        $("[data-test-id='city'] input").setValue(DataGenerator.generateCity(LOCAL));
+//        $("[data-test-id='city'] input").setValue(DataGenerator.generateCity(LOCAL));
+        $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(firstMeetingDate);
-        $("[data-test-id='name'] input").setValue(DataGenerator.generateName(LOCAL));
-        $("[data-test-id='phone'] input").setValue(DataGenerator.generatePhone(LOCAL));
+//        $("[data-test-id='name'] input").setValue(DataGenerator.generateName(LOCAL));
+        $("[data-test-id='name'] input").setValue(validUser.getName());
+//        $("[data-test-id='phone'] input").setValue(DataGenerator.generatePhone(LOCAL));
+        $("[data-test-id='phone'] input").setValue(validUser.getPhone());
         $(".checkbox__box").click();
         $(".button").click();
         $(".notification__content")
