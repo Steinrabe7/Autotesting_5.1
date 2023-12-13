@@ -16,8 +16,8 @@ import java.time.Duration;
 
 class DeliveryTest {
 
-//    private static final String TEST_TARGET_URL = "http://localhost:9999";
-    private static final String TEST_TARGET_URL = "http://0.0.0.0:9999";
+    private static final String TEST_TARGET_URL = "http://localhost:9999";
+//    private static final String TEST_TARGET_URL = "http://0.0.0.0:9999";
     private static final String LOCAL = "ru";
     private static final String MEETING_IS_SCHEDULED = "Встреча успешно запланирована на ";
     private static final long CLICK_TIMEOUT = 5;
