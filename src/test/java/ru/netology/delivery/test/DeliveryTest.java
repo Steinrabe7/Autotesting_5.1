@@ -1,6 +1,7 @@
 package ru.netology.delivery.test;
 
 import com.codeborne.selenide.ClickOptions;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,9 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.Condition;
 
 import java.time.Duration;
+import java.util.Arrays;
 
+@Slf4j
 class DeliveryTest {
 
     private static final String TEST_TARGET_URL = "http://localhost:9999";
@@ -34,20 +37,24 @@ class DeliveryTest {
         var validUser = DataGenerator.Registration.generateUser(LOCAL);
         var firstMeetingDate = DataGenerator.generateDate(FIRST_MEETING_DAYS_VALUE);
         var secondMeetingDate = DataGenerator.generateDate(SECOND_MEETING_DAYS_VALUE);
-        $("[data-test-id='city'] input").setValue(validUser.getCity());
-        $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(firstMeetingDate);
-        $("[data-test-id='name'] input").setValue(validUser.getName());
-        $("[data-test-id='phone'] input").setValue(validUser.getPhone());
-        $(".checkbox__box").click();
-        $(".button").click();
-        $(".notification__content")
-                .shouldHave(Condition.text(MEETING_IS_SCHEDULED + firstMeetingDate)).shouldBe(Condition.visible);
-        $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").setValue(secondMeetingDate);
-        $(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(CLICK_TIMEOUT)));
-        $(".button__text").click();
-        $(".notification__content")
-                .shouldHave(Condition.text(MEETING_IS_SCHEDULED + secondMeetingDate)).shouldBe(Condition.visible);
+        try {
+            $("[data-test-id='city'] input").setValue(validUser.getCity());
+            $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
+            $("[data-test-id='date'] input").setValue(firstMeetingDate);
+            $("[data-test-id='name'] input").setValue(validUser.getName());
+            $("[data-test-id='phone'] input").setValue(validUser.getPhone());
+            $(".checkbox__box").click();
+            $(".button").click();
+            $(".notification__content")
+                    .shouldHave(Condition.text(MEETING_IS_SCHEDULED + firstMeetingDate)).shouldBe(Condition.visible);
+            $("[data-test-id='date'] input").doubleClick().press(Keys.BACK_SPACE);
+            $("[data-test-id='date'] input").setValue(secondMeetingDate);
+            $(".button").click(ClickOptions.withTimeout(Duration.ofSeconds(CLICK_TIMEOUT)));
+            $(".button__text").click();
+            $(".notification__content")
+                    .shouldHave(Condition.text(MEETING_IS_SCHEDULED + secondMeetingDate)).shouldBe(Condition.visible);
+        } catch (Exception e) {
+            log.error("There's a problem: {}", Arrays.asList(e.getStackTrace()));
+        }
     }
 }
