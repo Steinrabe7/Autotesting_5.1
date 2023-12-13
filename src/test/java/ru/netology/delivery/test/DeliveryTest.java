@@ -1,7 +1,6 @@
 package ru.netology.delivery.test;
 
 import com.codeborne.selenide.ClickOptions;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.Condition;
 
 import java.time.Duration;
-import java.util.Arrays;
 
 class DeliveryTest {
 
@@ -32,7 +30,7 @@ class DeliveryTest {
 
     @Test
     @DisplayName("Should successful plan and re-plan meeting")
-    void shouldSuccessfulPlanAndRePlanMeeting() throws InterruptedException {
+    void shouldSuccessfulPlanAndRePlanMeeting() {
         var validUser = DataGenerator.Registration.generateUser(LOCAL);
         var firstMeetingDate = DataGenerator.generateDate(FIRST_MEETING_DAYS_VALUE);
         var secondMeetingDate = DataGenerator.generateDate(SECOND_MEETING_DAYS_VALUE);
